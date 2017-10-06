@@ -10,10 +10,11 @@ require_relative '../models/address_book'
    def main_menu
      puts "Main Menu - #{address_book.entries.count} entries"
      puts "1 - View all entries"
-     puts "2 - Create an entry"
-     puts "3 - Search for an entry"
-     puts "4 - Import entries from a CSV"
-     puts "5 - Exit"
+     puts "2 - View a certain entry"
+     puts "3 - Create an entry"
+     puts "4 - Search for an entry"
+     puts "5 - Import entries from a CSV"
+     puts "6 - Exit"
      print "Enter your selection: "
 
      selection = gets.to_i
@@ -24,17 +25,21 @@ require_relative '../models/address_book'
          main_menu
        when 2
          system "clear"
-         create_entry
+         specify_entry
          main_menu
        when 3
          system "clear"
-         search_entries
+         create_entry
          main_menu
        when 4
          system "clear"
-         read_csv
+         specify_entry
          main_menu
        when 5
+         system "clear"
+         read_csv
+         main_menu
+       when 6
          puts "Good-bye!"
          exit(0)
        else
@@ -53,6 +58,23 @@ require_relative '../models/address_book'
 
      system "clear"
      puts "End of entries"
+   end
+
+   def specify_entry
+     puts "Select your entry"
+     print "Index #: "
+
+     entry = gets.chomp.to_i
+
+     if address_book.entries[entry]
+       puts address_book.entries[entry]
+       puts "Hit Return key to return to Main Menu"
+       gets.chomp
+       system "clear"
+     else
+       puts "No entry exists at index # #{entry}"
+       specify_entry
+     end
    end
 
    def create_entry
