@@ -74,6 +74,24 @@ require_relative '../models/address_book'
        entry_five = book.entries[4]
        check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
      end
+
+     it "imports the 1st entry from alternate csv" do
+       book.import_from_csv("entries_2.csv")
+       entry_oneB = book.entries[0]
+       check_entry(entry_oneB, "Stuff", "555-555-4854", "stuff@blocmail.com")
+     end
+
+     it "imports the 2nd entry from alternate csv" do
+       book.import_from_csv("entries_2.csv")
+       entry_twoB = book.entries[1]
+       check_entry(entry_twoB, "Thing", "555-555-5415", "thing@blocmail.com")
+     end
+
+     it "imports the 3rd entry from alternate csv" do
+       book.import_from_csv("entries_2.csv")
+       entry_threeB = book.entries[2]
+       check_entry(entry_threeB, "Yup", "555-555-3660", "yup@blocmail.com")
+     end
    end
 
     describe "#remove_entry" do
