@@ -138,4 +138,19 @@ RSpec.describe AddressBook do
       expect(entry).to be_nil
     end
   end
+
+  describe "#iterative_search" do
+    it "searches AddressBook for Joe" do
+      book.import_from_csv("entries.csv")
+      entry = book.iterative_search("Joe")
+      expect(entry).to be_a Entry
+      check_entry(entry, "Joe", "555-555-3660", "joe@blocmail.com")
+    end
+
+    it "searches AddressBook for Billy" do
+      book.import_from_csv("entries.csv")
+      entry = book.iterative_search("Billy")
+      expect(entry).to be_nil
+    end
+  end
 end
