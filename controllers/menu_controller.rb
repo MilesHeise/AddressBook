@@ -15,6 +15,7 @@ class MenuController
     puts "4 - Search for an entry"
     puts "5 - Import entries from a CSV"
     puts "6 - Exit"
+    puts "911 - Delete all entries"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -42,6 +43,10 @@ class MenuController
     when 6
       puts "Good-bye!"
       exit(0)
+    when 911
+      system "clear"
+      defenestrate
+      main_menu
     else
       system "clear"
       puts "Sorry, that is not a valid input\n\n"
@@ -146,6 +151,25 @@ class MenuController
     end
   end
 
+  def defenestrate
+    puts "Are you sure? Address Book cannot be recovered!"
+    print "y or n: "
+    selection = gets.chomp
+
+    case selection
+    when "y"
+      address_book.entries.delete_if {|x| x}
+      puts "Entire Address Book has been deleted"
+    when "n"
+      system "clear"
+      main_menu
+    else
+      system "clear"
+      puts "#{selection} is not a valid input"
+      defenestrate
+    end
+  end
+
   def search_submenu(entry)
     puts "\nd - delete entry"
     puts "e - edit this entry"
@@ -179,7 +203,7 @@ class MenuController
     puts "m - return to main menu"
 
     selection = gets.chomp
-    
+
     case selection
     when "n"
     when "d"
