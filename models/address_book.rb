@@ -32,6 +32,7 @@ class AddressBook
     @entries.each do |entry|
       if entry.name == name && entry.phone_number == phone_number && entry.email == email
         @entries.delete(entry)
+        break
       end
     end
 

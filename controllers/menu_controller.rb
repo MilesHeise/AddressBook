@@ -158,8 +158,7 @@ class MenuController
 
     case selection
     when "y"
-      address_book.entries.delete_if {|x| x}
-      puts "Entire Address Book has been deleted"
+      address_book.entries.clear
     when "n"
       system "clear"
       main_menu
